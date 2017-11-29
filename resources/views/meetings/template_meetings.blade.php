@@ -13,6 +13,10 @@
 
                 <div class="panel-body">
 
+                  <p>
+                    <a href="/meetings/add" class="btn btn-primary">Tambah Meeting</a>
+                  </p>
+
 <table class="table table-bordered">
 
 <thead>
@@ -31,7 +35,7 @@
   <td>Meeting Client A</td>
   <td>2017-11-26</td>
   <td>
-    
+
     <a href="" class="btn btn-sm btn-primary">EDIT</a>
     <a href="" class="btn btn-sm btn-danger">DELETE</a>
 

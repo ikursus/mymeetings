@@ -48,13 +48,18 @@
                     </div>
 
                     <div class="form-group">
+                      <label>Password User Confirmation</label>
+                      <input type="password" name="password_confirmation" class="form-control">
+                    </div>
+
+                    <div class="form-group">
                       <label>Telefon User</label>
                       <input type="text" name="telefon" class="form-control">
                     </div>
 
                     <div class="form-group">
                       <label>Jabatan</label>
-                      <select name="jabatan" class="form-control">
+                      <select name="jabatan_id" class="form-control">
                         <option value="1">Jabatan 1</option>
                         <option value="2">Jabatan 2</option>
                       </select>

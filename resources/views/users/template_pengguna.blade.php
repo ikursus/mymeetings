@@ -35,16 +35,18 @@
 
 <tbody>
 
+@foreach( $senarai_users as $pengguna )
 <tr>
-  <td>1</td>
-  <td>CHONG WEI</td>
-  <td>chongwei@gmail.com</td>
-  <td>0123456789</td>
+  <td>{{ $pengguna->id }}</td>
+  <td>{{ $pengguna->nama_user }}</td>
+  <td>{{ $pengguna->email }}</td>
+  <td>{{ $pengguna->telefon }}</td>
   <td>
-    <a href="" class="btn btn-sm btn-primary">EDIT</a>
+    <a href="{{ url('/users/' . $pengguna->id) }}" class="btn btn-sm btn-primary">EDIT</a>
     <a href="" class="btn btn-sm btn-danger">DELETE</a>
   </td>
 </tr>
+@endforeach
 
 </tbody>
 </table>

@@ -23,11 +23,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 // Routes admin area
-Route::get('dashboard', function () {
-  return view('admin/template_dashboard');
-});
+Route::get('dashboard', 'DashboardController@index');
 
 // Papar senarai users
 Route::get('users', 'UsersController@paparsenarai');
@@ -36,9 +33,20 @@ Route::get('users/add', 'UsersController@borangTambahUser');
 // Terima data dari borang tambah user menerusi HTTP POST
 Route::post('users/add', 'UsersController@simpanDataUser');
 
+Route::get('users/{id}', 'UsersController@borangEditUser');
+Route::patch('users/{id}', 'UsersController@updateDataUser');
 
-
-
-
-
+// Papar senarai meeting
 Route::get('meetings', 'MeetingsController@paparsenarai');
+// Papar borang tambah meeting
+Route::get('meetings/add', 'MeetingsController@borangTambahMeeting');
+// Terima data dari borang tambah meeting menerusi HTTP POST
+Route::post('meetings/add', 'MeetingsController@simpanDataMeeting');
+
+
+// Papar senarai jabatan
+Route::get('jabatan', 'JabatanController@index');
+// Papar borang tambah jabatan
+Route::get('jabatan/add', 'JabatanController@create');
+// Terima data dari borang tambah jabatan menerusi HTTP POST
+Route::post('jabatan/add', 'JabatanController@store');
