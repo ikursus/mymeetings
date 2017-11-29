@@ -43,7 +43,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="dashboard">Dashboard</a></li>
+                            <li><a href="/dashboard">Dashboard</a></li>
+                            <li><a href="/users">Users</a></li>
+                            <li><a href="/meetings">Meetings</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else

@@ -13,6 +13,10 @@
 
                 <div class="panel-body">
 
+                  <p>
+                    <a href="/users/add" class="btn btn-primary">Tambah User</a>
+                  </p>
+
 <table class="table table-bordered">
 
 <thead>
