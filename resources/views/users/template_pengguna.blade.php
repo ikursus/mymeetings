@@ -1,6 +1,10 @@
 @extends('layouts/app')
 
 @section('content')
+<!-- // Comment dalam HTML -->
+{{-- Comment dalam format blade --}}
+<?php // comment dalam format PHP ?>
+
 <div class="container">
 
     <div class="row">

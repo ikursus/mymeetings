@@ -33,7 +33,8 @@ Route::get('dashboard', function () {
 Route::get('users', 'UsersController@paparsenarai');
 // Papar borang tambah user
 Route::get('users/add', 'UsersController@borangTambahUser');
-
+// Terima data dari borang tambah user menerusi HTTP POST
+Route::post('users/add', 'UsersController@simpanDataUser');
 
 
 
