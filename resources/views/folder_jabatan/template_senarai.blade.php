@@ -32,16 +32,16 @@
 </thead>
 
 <tbody>
-
+@foreach( $senarai_jabatan as $jabatan )
 <tr>
-  <td>1</td>
-  <td>UNIT IT</td>
+  <td>{{ $jabatan->id }}</td>
+  <td>{{ $jabatan->nama }}</td>
   <td>
     <a href="" class="btn btn-sm btn-primary">EDIT</a>
     <a href="" class="btn btn-sm btn-danger">DELETE</a>
   </td>
 </tr>
-
+@endforeach
 </tbody>
 </table>
 

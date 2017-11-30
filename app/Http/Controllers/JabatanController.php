@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+
 class JabatanController extends Controller
 {
     /**
@@ -13,7 +15,9 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        return view('folder_jabatan/template_senarai');
+        $senarai_jabatan = DB::table('jabatan')->get();
+        
+        return view('folder_jabatan/template_senarai', compact('senarai_jabatan'));
     }
 
     /**
@@ -40,10 +44,12 @@ class JabatanController extends Controller
         ]);
 
         // Dapatkan semua data dari borang
-        $data = $request->all();
+        $data = $request->only('nama');
+
+        DB::table('jabatan')->insert($data);
 
         // Paparkan result
-        return $data;
+        return redirect('/jabatan');
     }
 
     /**

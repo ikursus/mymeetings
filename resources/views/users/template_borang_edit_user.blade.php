@@ -24,6 +24,7 @@
                   @endif
 
                   <form method="POST" action="">
+
                     <input type="hidden" name="_method" value="PATCH">
 
                     {{ csrf_field() }}
@@ -46,11 +47,6 @@
                     <div class="form-group">
                       <label>Password User</label>
                       <input type="password" name="password" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                      <label>Password User Confirmation</label>
-                      <input type="password" name="password_confirmation" class="form-control">
                     </div>
 
                     <div class="form-group">

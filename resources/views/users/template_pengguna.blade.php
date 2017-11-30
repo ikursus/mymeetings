@@ -43,13 +43,29 @@
   <td>{{ $pengguna->telefon }}</td>
   <td>
     <a href="{{ url('/users/' . $pengguna->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-    <a href="" class="btn btn-sm btn-danger">DELETE</a>
+
+    <form method="POST" action="{{ url('/users/' . $pengguna->id) }}">
+
+      <input type="hidden" name="_method" value="DELETE">
+
+      {{ csrf_field() }}
+
+      <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
+
+    </form>
+
+
+
+
   </td>
 </tr>
 @endforeach
 
 </tbody>
 </table>
+
+<p>Jumlah User: {{ $senarai_users->total() }} orang</p>
+{{ $senarai_users->links() }}
 
                 </div>
 

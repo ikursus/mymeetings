@@ -32,9 +32,12 @@ Route::get('users', 'UsersController@paparsenarai');
 Route::get('users/add', 'UsersController@borangTambahUser');
 // Terima data dari borang tambah user menerusi HTTP POST
 Route::post('users/add', 'UsersController@simpanDataUser');
-
+// Papar borang edit user
 Route::get('users/{id}', 'UsersController@borangEditUser');
+// Terima data dari borang edit user menerusi HTTP POST dan PATCH
 Route::patch('users/{id}', 'UsersController@updateDataUser');
+// Untuk delete user
+Route::delete('users/{id}', 'UsersController@deleteUser');
 
 // Papar senarai meeting
 Route::get('meetings', 'MeetingsController@paparsenarai');
