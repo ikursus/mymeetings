@@ -49,6 +49,9 @@ Route::post('meetings/add', 'MeetingsController@simpanDataMeeting');
 
 // Papar senarai jabatan
 Route::get('jabatan', 'JabatanController@index');
+// Datatables
+Route::get('jabatan/datatables', 'JabatanController@datatables');
+
 // Papar borang tambah jabatan
 Route::get('jabatan/add', 'JabatanController@create');
 // Terima data dari borang tambah jabatan menerusi HTTP POST

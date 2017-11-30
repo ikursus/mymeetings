@@ -21,7 +21,7 @@
                     <a href="/jabatan/add" class="btn btn-primary">Tambah Jabatan</a>
                   </p>
 
-<table class="table table-bordered">
+<table class="table table-bordered" id="jabatan-table">
 
 <thead>
   <tr>
@@ -31,28 +31,6 @@
   </tr>
 </thead>
 
-<tbody>
-@foreach( $senarai_jabatan as $jabatan )
-<tr>
-  <td>{{ $jabatan->id }}</td>
-  <td>{{ $jabatan->nama }}</td>
-  <td>
-    <a href="{{ url('/jabatan/' . $jabatan->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-
-    <form method="POST" action="{{ url('/jabatan/' . $jabatan->id) }}">
-
-      <input type="hidden" name="_method" value="DELETE">
-
-      {{ csrf_field() }}
-
-      <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
-
-    </form>
-
-  </td>
-</tr>
-@endforeach
-</tbody>
 </table>
 
                 </div>
@@ -64,4 +42,22 @@
     </div>
 
 </div>
+@endsection
+
+
+@section('script')
+<script>
+$(function() {
+    $('#jabatan-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! url('/jabatan/datatables') !!}',
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'nama', name: 'nama' },
+            { data: 'tindakan', name: 'tindakan', orderable: false, searchable: false}
+        ]
+    });
+});
+</script>
 @endsection

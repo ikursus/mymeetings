@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
+use DataTables;
+// Model
 use App\Jabatan;
+
 
 class JabatanController extends Controller
 {
@@ -18,9 +21,38 @@ class JabatanController extends Controller
     {
         // Query Builder - dapatkan rekod senarai jabatan dari table jabatan
         // $senarai_jabatan = DB::table('jabatan')->get();
-        $senarai_jabatan = Jabatan::all();
+        // $senarai_jabatan = Jabatan::all();
 
         return view('folder_jabatan/template_senarai', compact('senarai_jabatan'));
+    }
+
+    public function datatables()
+    {
+      // Dapatkan data daripada table jabatan
+      $senarai_jabatan = DB::table('jabatan')->select('id', 'nama');
+
+      // Bagi response datatables untuk paparan data $jabatan
+      return DataTables::of($senarai_jabatan)
+      ->addColumn('tindakan', function( $jabatan ) {
+        return '
+
+        <a href="' . url('/jabatan/' . $jabatan->id) . '" class="btn btn-xs btn-primary btn-block">EDIT</a>
+
+        <form method="POST" action="' . url('/jabatan/' . $jabatan->id) . '">
+
+          <input type="hidden" name="_method" value="DELETE">
+
+          ' . csrf_field() . '
+
+          <button type="submit" class="btn btn-xs btn-danger  btn-block">DELETE</button>
+
+        </form>
+
+        ';
+      })
+      ->rawColumns(['tindakan'])
+      ->make(true);
+
     }
 
     /**
