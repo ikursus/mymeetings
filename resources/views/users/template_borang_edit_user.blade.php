@@ -57,8 +57,9 @@
                     <div class="form-group">
                       <label>Jabatan</label>
                       <select name="jabatan_id" class="form-control">
-                        <option value="1">Jabatan 1</option>
-                        <option value="2">Jabatan 2</option>
+                        @foreach( $senarai_jabatan as $jabatan )
+                        <option value="{{ $jabatan->id }}">{{ $jabatan->nama }}</option>
+                        @endforeach
                       </select>
                     </div>
 

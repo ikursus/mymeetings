@@ -53,3 +53,9 @@ Route::get('jabatan', 'JabatanController@index');
 Route::get('jabatan/add', 'JabatanController@create');
 // Terima data dari borang tambah jabatan menerusi HTTP POST
 Route::post('jabatan/add', 'JabatanController@store');
+// Papar borang edit jabatan
+Route::get('jabatan/{id}', 'JabatanController@edit');
+// Terima data dari borang edit jabatan menerusi HTTP POST DAN PATCH
+Route::patch('jabatan/{id}', 'JabatanController@update');
+// Untuk delete jabatan
+Route::delete('jabatan/{id}', 'JabatanController@destroy');

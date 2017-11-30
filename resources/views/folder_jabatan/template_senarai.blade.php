@@ -37,8 +37,18 @@
   <td>{{ $jabatan->id }}</td>
   <td>{{ $jabatan->nama }}</td>
   <td>
-    <a href="" class="btn btn-sm btn-primary">EDIT</a>
-    <a href="" class="btn btn-sm btn-danger">DELETE</a>
+    <a href="{{ url('/jabatan/' . $jabatan->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+
+    <form method="POST" action="{{ url('/jabatan/' . $jabatan->id) }}">
+
+      <input type="hidden" name="_method" value="DELETE">
+
+      {{ csrf_field() }}
+
+      <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
+
+    </form>
+
   </td>
 </tr>
 @endforeach

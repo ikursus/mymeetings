@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
+use App\Jabatan;
 
 class JabatanController extends Controller
 {
@@ -15,8 +16,10 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        $senarai_jabatan = DB::table('jabatan')->get();
-        
+        // Query Builder - dapatkan rekod senarai jabatan dari table jabatan
+        // $senarai_jabatan = DB::table('jabatan')->get();
+        $senarai_jabatan = Jabatan::all();
+
         return view('folder_jabatan/template_senarai', compact('senarai_jabatan'));
     }
 
@@ -44,9 +47,11 @@ class JabatanController extends Controller
         ]);
 
         // Dapatkan semua data dari borang
-        $data = $request->only('nama');
+        // $data = $request->only('nama');
+        $data = $request->all();
 
-        DB::table('jabatan')->insert($data);
+        // DB::table('jabatan')->insert($data);
+        Jabatan::create($data);
 
         // Paparkan result
         return redirect('/jabatan');
@@ -71,7 +76,14 @@ class JabatanController extends Controller
      */
     public function edit($id)
     {
-        //
+      // Dapatkan data dari table users berdasarkan ID
+      // $jabatan = DB::table('jabatan')->where('id', $id)->first();
+      $jabatan = Jabatan::find($id);
+
+      // Papar template edit jabatan
+      return view('folder_jabatan/template_borang_edit', compact('jabatan') );
+
+
     }
 
     /**
@@ -83,7 +95,20 @@ class JabatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      // Semak borang (validasi)
+      $request->validate([
+        'nama' => 'required|min:3'
+      ]);
+
+      // Dapatkan semua data dari borang
+      // $data = $request->only('nama');
+      $data = $request->all();
+
+      // DB::table('jabatan')->where('id', $id)->update($data);
+      Jabatan::find($id)->update($data);
+
+      // Paparkan result
+      return redirect('/jabatan');
     }
 
     /**
@@ -94,6 +119,10 @@ class JabatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+      // Cari jabatan yang nak di delete
+        $jabatan = Jabatan::find($id);
+        $jabatan->delete();
+        // Kembali ke halaman jabatan
+        return redirect('/jabatan');
     }
 }

@@ -13,10 +13,15 @@ class UsersController extends Controller
     {
       // Dapatkan senarai users dari table users
       // $senarai_users = DB::table('users')->get();
-      $senarai_users = DB::table('users')->orderBy('id', 'desc')->paginate(2);
+      // $senarai_users = DB::table('users')->orderBy('id', 'desc')->paginate(2);
       // Bagi response papar template_pengguna yang disertakan dengan variable
       // $senarai_users
       // $jumlah_users = DB::table('users')->count();
+      // Relationship diantara table users dan table jabatan
+      $senarai_users = DB::table('users')
+      ->join('jabatan', 'users.jabatan_id', '=', 'jabatan.id')
+      ->select('users.*', 'jabatan.nama as nama_jabatan')
+      ->paginate(2);
 
       return view('users/template_pengguna', compact('senarai_users'));
     }
@@ -24,7 +29,10 @@ class UsersController extends Controller
     // Function paparkan template tambah user
     public function borangTambahUser()
     {
-      return view('users/template_borang_tambah_user');
+      // Dapatkan senarai jabatan
+      $senarai_jabatan = DB::table('jabatan')->select('id', 'nama')->get();
+      // Paparkan template borang tambah user dan sertakan $senarai_jabatan
+      return view('users/template_borang_tambah_user', compact('senarai_jabatan') );
     }
 
     // Function terima data dari borang tambah user
@@ -63,8 +71,10 @@ class UsersController extends Controller
     {
       // Dapatkan data dari table users berdasarkan ID
       $user = DB::table('users')->where('id', $id)->first();
+      // Dapatkan senarai jabatan
+      $senarai_jabatan = DB::table('jabatan')->select('id', 'nama')->get();
       // Paparkan template borang edit user
-      return view('users/template_borang_edit_user', compact('user'));
+      return view('users/template_borang_edit_user', compact('user', 'senarai_jabatan'));
     }
 
     public function updateDataUser(Request $request, $id)

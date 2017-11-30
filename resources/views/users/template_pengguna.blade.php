@@ -29,6 +29,7 @@
     <th>NAMA</th>
     <th>EMAIL</th>
     <th>TELEFON</th>
+    <th>JABATAN</th>
     <th>TINDAKAN</th>
   </tr>
 </thead>
@@ -41,6 +42,7 @@
   <td>{{ $pengguna->nama_user }}</td>
   <td>{{ $pengguna->email }}</td>
   <td>{{ $pengguna->telefon }}</td>
+  <td>{{ $pengguna->nama_jabatan }}</td>
   <td>
     <a href="{{ url('/users/' . $pengguna->id) }}" class="btn btn-sm btn-primary">EDIT</a>
 
